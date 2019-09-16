@@ -8,7 +8,7 @@ A lightweight movie search API written in [_responder_](http://python-responder.
 # Run application
 Run script from the root directory of the project:
 ```bash
-python api.py
+python search.py
 ```
 
 # Demo
