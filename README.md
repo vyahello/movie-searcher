@@ -11,6 +11,9 @@ Run script from the root directory of the project:
 python api.py
 ```
 
+# Demo
+![Screenshot](static/service.png)
+
 # Contributing
 - clone the repository
 - configure Git for the first time after cloning with your name and email
