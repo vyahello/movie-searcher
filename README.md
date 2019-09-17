@@ -7,6 +7,8 @@ A lightweight movie search API written in [_responder_](http://python-responder.
 
 ## Table of contents
 - [Run application](#run-application)
+- [Demo](#demo)
+- [Run static code analysis](#run-static-code-analysis)
 - [Contributing](#contributing)
 
 # Run application
@@ -17,6 +19,13 @@ python search.py
 
 # Demo
 ![Screenshot](static/service.png)
+
+# Run static code analysis
+In general static code analysis consists of following tools: `black`, `flake8`, `pylint`, `mypy`, and `unittests` accordingly.
+To be able to start static code analysis _locally_ please run following script from the root directory of the project:
+```bash
+./run-code-analysis.sh install-dependencies
+```
 
 # Contributing
 - clone the repository
