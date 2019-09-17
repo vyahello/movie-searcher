@@ -1,10 +1,10 @@
 from responder import Request, Response
 from lib import movie_api
 from lib.data.database import movie_to_dict, find_by_imdb, global_init, search_keyword, search_director
-from lib.logging import MainLogger
+from lib.logging import Logger, MainLogger
 from lib.static import ResponseCount
 
-_logger = MainLogger(__name__)
+_logger: Logger = MainLogger(__name__)
 
 global_init()
 
@@ -29,13 +29,12 @@ def search_by_keyword(_: Request, response: Response, keyword: str) -> None:
 @movie_api.route("/api/director/{director_name}")
 def search_by_director(_: Request, response: Response, director_name: str) -> None:
     movies = search_director(director_name)
-    print("Searching for movie by director: %s", director_name)
+    _logger.info("Searching for movie by director: %s", director_name)
     limited: bool = len(movies) > ResponseCount.MAX.value
     if len(movies) > ResponseCount.MAX.value:
         movies = movies[:10]
 
     movie_dicts = [movie_to_dict(movie) for movie in movies]
-
     response.media = {"keyword": director_name, "hits": movie_dicts, "truncated_results": limited}
 
 
