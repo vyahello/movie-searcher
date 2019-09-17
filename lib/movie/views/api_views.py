@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Any
 from responder import Request, Response
 from lib.movie import movie_api
 from lib.movie.data.database import (
@@ -17,7 +17,7 @@ from lib.movie.static import ResponseCount
 _logger: Logger = MainLogger(__name__)
 
 
-def _hits(movies: List[Movie]) -> List[Dict]:
+def _hits(movies: List[Movie]) -> List[Dict[Any, Any]]:
     if len(movies) > ResponseCount.MAX.value:
         movies = movies[: ResponseCount.MAX.value]
 

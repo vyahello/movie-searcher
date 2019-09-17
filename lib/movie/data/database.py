@@ -2,11 +2,11 @@ import os
 import csv
 import collections
 from dataclasses import dataclass
-from typing import List, Dict
+from typing import List, Dict, Any, Set, Optional
 
-_movie_data = dict()
-_genres = collections.defaultdict(list)
-_top_movies = list()
+_movie_data: Dict[Any, Any] = dict()
+_genres: Any = collections.defaultdict(list)
+_top_movies: List[Any] = list()
 
 
 @dataclass
@@ -14,16 +14,16 @@ class Movie:
     imdb_code: str
     director: str
     duration: int
-    genres: set
+    genres: Set[Any]
     title: str
     lower_title: int
-    keywords: set
-    rating: set
+    keywords: Set[Any]
+    rating: Set[Any]
     year: float
     imdb_score: float
 
 
-def movie_to_dict(movie: Movie) -> Dict:
+def movie_to_dict(movie: Movie) -> Dict[Any, Any]:
     if not movie:
         return {}
 
@@ -42,7 +42,7 @@ def movie_to_dict(movie: Movie) -> Dict:
     return data
 
 
-def find_by_imdb(imdb_code: str) -> List[Movie]:
+def find_by_imdb(imdb_code: str) -> Any:
     global _movie_data
     movie = _movie_data.get(imdb_code)
     return movie
@@ -136,17 +136,17 @@ def global_init() -> None:
 
     _movie_data = {}
     for row in rows:
-        movie = Movie(
-            imdb_code=_build_imdb_code(row.get("movie_imdb_link", None)),
+        movie = Movie(  # type: ignore
+            imdb_code=_build_imdb_code(row.get("movie_imdb_link", None)),  # type: ignore
             director=row.get("director_name", "").strip(),
             rating=row.get("content_rating", "").strip(),
             title=row.get("movie_title", "").replace("\xa0", "").strip(),
             lower_title=row.get("movie_title", "").replace("\xa0", "").strip().lower(),
-            duration=_make_numerical(row.get("duration", 0)),
-            genres=set(_split_separated_text(row.get("genres", "").lower())),
-            keywords=set(_split_separated_text(row.get("plot_keywords", "").lower())),
+            duration=_make_numerical(row.get("duration", 0)),  # type: ignore
+            genres=set(_split_separated_text(row.get("genres", "").lower())),  # type: ignore
+            keywords=set(_split_separated_text(row.get("plot_keywords", "").lower())),  # type: ignore
             imdb_score=float(row.get("imdb_score", 0.0)),
-            year=_make_numerical(row.get("title_year", 0)),
+            year=_make_numerical(row.get("title_year", 0)),  # type: ignore
         )
         _movie_data[movie.imdb_code] = movie
 
@@ -169,10 +169,9 @@ def _build_genres() -> None:
     if _genres:
         return
 
-    movie: Movie = None
     for movie in _movie_data.values():
-        for g in movie.genres:
-            _genres[g.lower().strip()].append(movie)
+        for genre in movie.genres:
+            _genres[genre.lower().strip()].append(movie)
 
     # Sort by score so we can easily get top 10 of any category.
     for _, movies in _genres.items():
@@ -187,7 +186,7 @@ def _make_numerical(text: str) -> int:
     return int(text)
 
 
-def _build_imdb_code(link: str) -> str:
+def _build_imdb_code(link: str) -> Optional[str]:
     # Need to convert this:
     # http://www.imdb.com/title/tt0449088/?ref_=fn_tt_tt_1
     # to this:
@@ -200,7 +199,7 @@ def _build_imdb_code(link: str) -> str:
     return parts[4]
 
 
-def _split_separated_text(text: str) -> str:
+def _split_separated_text(text: str) -> Optional[Any]:
     if not text:
         return text
 
