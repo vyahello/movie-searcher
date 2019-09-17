@@ -1,5 +1,2 @@
-from responder import API
-
-movie_api = API()
-
-from lib import routes  # noqa: F401
+from lib.movie_api import movie_api
+from lib.views import api_views, home

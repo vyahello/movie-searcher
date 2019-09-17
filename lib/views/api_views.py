@@ -1,17 +1,10 @@
 from responder import Request, Response
 from lib import movie_api
-from lib.data.database import movie_to_dict, find_by_imdb, global_init, search_keyword, search_director
+from lib.data.database import search_keyword, movie_to_dict, search_director, find_by_imdb
 from lib.logging import Logger, MainLogger
 from lib.static import ResponseCount
 
 _logger: Logger = MainLogger(__name__)
-
-global_init()
-
-
-@movie_api.route("/")
-def index(_: Request, response: Response) -> None:
-    response.content = movie_api.template("home/index.html")
 
 
 @movie_api.route("/api/search/{keyword}")

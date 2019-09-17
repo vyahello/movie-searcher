@@ -1,10 +1,17 @@
 from lib import movie_api
+from lib.data.database import global_init
 from lib.static import Endpoint
 
 
-def _search_movies(endpoint: Endpoint) -> None:
-    movie_api.run(address=endpoint.address, port=endpoint.port, debug=endpoint.debug)
+class MovieSearcher:
+    def __init__(self, endpoint: Endpoint) -> None:
+        self._endpoint = endpoint
+
+    def start(self) -> None:
+        global_init()
+        movie_api.run(address=self._endpoint.address, port=self._endpoint.port, debug=self._endpoint.debug)
 
 
 if __name__ == "__main__":
-    _search_movies(Endpoint())
+    searcher: MovieSearcher = MovieSearcher(Endpoint())
+    searcher.start()
