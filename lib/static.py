@@ -15,3 +15,6 @@ class ResponseCount(Enum):
     """The class WEB response count item."""
 
     MAX: int = 10
+
+    def __str__(self) -> str:
+        return self.value
