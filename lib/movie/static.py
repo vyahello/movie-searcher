@@ -17,4 +17,4 @@ class ResponseCount(Enum):
     MAX: int = 10
 
     def __str__(self) -> str:
-        return self.value
+        return str(self.value)

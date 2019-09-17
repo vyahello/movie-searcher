@@ -14,3 +14,9 @@ venv
 # python identifiers
 .python-version
 .pytest_cache/
+
+# mypy
+.mypy_cache
+
+# coverage
+.coverage
