@@ -1,7 +1,7 @@
 from typing import List, Dict
 from responder import Request, Response
-from lib import movie_api
-from lib.data.database import (
+from lib.movie import movie_api
+from lib.movie.data.database import (
     Movie,
     search_keyword,
     movie_to_dict,
@@ -12,7 +12,7 @@ from lib.data.database import (
     movies_by_genre,
 )
 from lib.logging import Logger, MainLogger
-from lib.static import ResponseCount
+from lib.movie.static import ResponseCount
 
 _logger: Logger = MainLogger(__name__)
 

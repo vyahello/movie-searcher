@@ -1,6 +1,6 @@
-from lib import movie_api
-from lib.data.database import global_init
-from lib.static import Endpoint
+from lib.movie import movie_api
+from lib.movie.data.database import global_init
+from lib.movie.static import Endpoint
 
 
 class MovieSearcher:
