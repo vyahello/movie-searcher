@@ -16,7 +16,7 @@ Please follow [movie search api](https://movie-search-rest-api.herokuapp.com) ap
 # Run application
 Run script from the root directory of the project:
 ```bash
-python search.py
+python movie_search_api.py
 ```
 
 # Demo
@@ -39,7 +39,7 @@ heroku login
 ```
 - Create an application
 ```bash
-heroku create todo-task-master
+heroku create movie-search-rest-api
 ```
 - Commit and push repo into a heroku
 ```bash
