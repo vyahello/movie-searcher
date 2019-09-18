@@ -1,10 +1,20 @@
 """Module contains API to work with `movie-searcher` app."""
+from abc import ABC, abstractmethod
 from lib.movie import movie_api
 from lib.movie.data.database import global_init
 from lib.movie.static import Endpoint
 
 
-class MovieSearcher:
+class Service(ABC):
+    """The class represents abstract interface for service."""
+
+    @abstractmethod
+    def start(self) -> None:
+        """Starts abstract searcher."""
+        pass
+
+
+class MovieSearcher(Service):
     """The class represents movie searcher engine."""
 
     def __init__(self, endpoint: Endpoint) -> None:
@@ -18,7 +28,7 @@ class MovieSearcher:
 
 def main() -> None:
     """Runs an application."""
-    searcher: MovieSearcher = MovieSearcher(Endpoint())
+    searcher: Service = MovieSearcher(Endpoint())
     searcher.start()
 
 

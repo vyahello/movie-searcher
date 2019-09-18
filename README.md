@@ -16,7 +16,7 @@ Please follow [movie search api](https://movie-search-rest-api.herokuapp.com) ap
 # Run application
 Run script from the root directory of the project:
 ```bash
-python search.py
+python movie_search_api.py
 ```
 
 # Demo
