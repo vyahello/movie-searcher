@@ -16,6 +16,11 @@ class MovieSearcher:
         movie_api.run(address=self._endpoint.address, port=self._endpoint.port, debug=self._endpoint.debug)
 
 
-if __name__ == "__main__":
+def main() -> None:
+    """Runs an application."""
     searcher: MovieSearcher = MovieSearcher(Endpoint())
     searcher.start()
+
+
+if __name__ == "__main__":
+    main()
