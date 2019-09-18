@@ -12,9 +12,10 @@ from lib.movie.data.database import (
     movies_by_genre,
 )
 from lib.logging import Logger, MainLogger
-from lib.movie.static import ResponseCount
+from lib.movie.static import ResponseCount, Route
 
 _logger: Logger = MainLogger(__name__)
+_route: Route = Route()
 
 
 def _hits(movies: List[Movie]) -> List[Dict[Any, Any]]:
@@ -24,7 +25,7 @@ def _hits(movies: List[Movie]) -> List[Dict[Any, Any]]:
     return [movie_to_dict(movie) for movie in movies]
 
 
-@movie_api.route("/api/search/{keyword}")
+@movie_api.route(route=_route.search_single_keyword)
 async def search_by_keyword(_: Request, response: Response, keyword: str) -> None:
     movies = search_keyword(keyword)
     _logger.info("Searching for movie by keyword: %s", keyword)
@@ -32,7 +33,7 @@ async def search_by_keyword(_: Request, response: Response, keyword: str) -> Non
     response.media = {"keyword": keyword, "hits": _hits(movies), "truncated_results": limited}
 
 
-@movie_api.route("/api/director/{director_name}")
+@movie_api.route(route=_route.single_director)
 async def search_by_director(_: Request, response: Response, director_name: str) -> None:
     movies = search_director(director_name)
     _logger.info("Searching for movie by director: %s", director_name)
@@ -40,7 +41,7 @@ async def search_by_director(_: Request, response: Response, director_name: str)
     response.media = {"keyword": director_name, "hits": _hits(movies), "truncated_results": limited}
 
 
-@movie_api.route("/api/movie/top")
+@movie_api.route(route=_route.top_ten)
 async def search_movie_top_ten(_: Request, response: Response) -> None:
     movies = movies_by_popularity()
     _logger.info("Searching for top 10 movies")
@@ -48,12 +49,12 @@ async def search_movie_top_ten(_: Request, response: Response) -> None:
     response.media = {"keyword": f"top_{ResponseCount.MAX.value}", "hits": _hits(movies), "truncated_results": limited}
 
 
-@movie_api.route("/api/movie/genre/all")
+@movie_api.route(route=_route.all_genres)
 async def search_all_genres(_: Request, response: Response) -> None:
     response.media = all_genres()
 
 
-@movie_api.route("/api/movie/genre/{genre}")
+@movie_api.route(route=_route.single_genre)
 async def search_movies_by_genre(_: Request, response: Response, genre: str):
     movies = movies_by_genre(genre)
     _logger.info("Searching for movies by genre %s, %s results", genre, len(movies))
@@ -61,7 +62,7 @@ async def search_movies_by_genre(_: Request, response: Response, genre: str):
     response.media = {"genre": genre, "hits": _hits(movies), "truncated_results": limited}
 
 
-@movie_api.route("/api/movie/{imdb_number}")
+@movie_api.route(route=_route.single_imdb_movie)
 async def search_movie_by_imdb(_: Request, response: Response, imdb_number: str) -> None:
     movie = find_by_imdb(imdb_number)
     _logger.info("Looking up movie by code: %s, found? %s", imdb_number, "Yes" if movie else "NO")
