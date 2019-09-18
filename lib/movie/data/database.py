@@ -72,14 +72,7 @@ def search_title(keyword: str) -> List[Movie]:
     if not keyword:
         return []
 
-    keyword = keyword.lower().strip()
-
-    hits = []
-    for movie in _movie_data.values():
-        if movie.lower_title.find(keyword) >= 0:
-            hits.append(movie)
-
-    return hits
+    return [movie for movie in _movie_data.values() if movie.lower_title.find(keyword.lower().strip()) >= 0]
 
 
 def search_director(director: str) -> List[Movie]:
@@ -88,14 +81,7 @@ def search_director(director: str) -> List[Movie]:
     if not director:
         return []
 
-    director = director.lower().strip()
-
-    hits = []
-    for movie in _movie_data.values():
-        if movie.director.lower().find(director) >= 0:
-            hits.append(movie)
-
-    return hits
+    return [movie for movie in _movie_data.values() if movie.director.lower().find(director.lower().strip()) >= 0]
 
 
 def all_genres() -> List[str]:
@@ -161,7 +147,7 @@ def _build_top_movies() -> None:
 
     # Sort by score so top ranked movies appear first.
     _top_movies = list(_movie_data.values())
-    _top_movies.sort(key=lambda mv: mv.imdb_score, reverse=True)
+    _top_movies.sort(key=lambda movie: movie.imdb_score, reverse=True)
 
 
 def _build_genres() -> None:
@@ -175,8 +161,7 @@ def _build_genres() -> None:
 
     # Sort by score so we can easily get top 10 of any category.
     for _, movies in _genres.items():
-        movies.sort(key=lambda mv: mv.imdb_score, reverse=True)
-        # print(genre, [movie.imdb_score for movie in movies])
+        movies.sort(key=lambda movie_: movie_.imdb_score, reverse=True)
 
 
 def _make_numerical(text: str) -> int:
@@ -187,11 +172,6 @@ def _make_numerical(text: str) -> int:
 
 
 def _build_imdb_code(link: str) -> Optional[str]:
-    # Need to convert this:
-    # http://www.imdb.com/title/tt0449088/?ref_=fn_tt_tt_1
-    # to this:
-    # tt0449088
-
     parts = link.split("/")
     if len(parts) < 5:
         return None
@@ -203,7 +183,4 @@ def _split_separated_text(text: str) -> Optional[Any]:
     if not text:
         return text
 
-    text = text.strip()
-    parts = [p.strip() for p in text.split("|") if p and p.strip()]
-
-    return parts
+    return [part.strip() for part in text.strip().split("|") if part and part.strip()]

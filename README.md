@@ -1,5 +1,6 @@
 # Movie search API
-A lightweight movie search API written in [_responder_](http://python-responder.org/en/latest/) python HTTP service framework.
+A lightweight movie search API written in [_responder_](http://python-responder.org/en/latest/) python HTTP service framework. 
+Please follow [movie search api](https://movie-search-rest-api.herokuapp.com) app to see how iy looks like.
 
 [![Build Status](https://travis-ci.org/vyahello/movie-search-api.svg?branch=master)](https://travis-ci.org/vyahello/movie-search-api)
 [![Coverage Status](https://coveralls.io/repos/github/vyahello/movie-search-api/badge.svg?branch=master)](https://coveralls.io/github/vyahello/movie-search-api?branch=master)
@@ -9,6 +10,7 @@ A lightweight movie search API written in [_responder_](http://python-responder.
 - [Run application](#run-application)
 - [Demo](#demo)
 - [Run static code analysis](#run-static-code-analysis)
+- [Heroku deployment](#heroku-deployment)
 - [Contributing](#contributing)
 
 # Run application
@@ -27,6 +29,29 @@ To be able to start static code analysis _locally_ please run following script f
 ./run-code-analysis.sh install-dependencies
 ```
 
+# Heroku deployment
+Please follow instructions from - https://python-responder.org/en/latest/deployment.html
+
+- Install heroku following by - https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+- Login to heroku
+```bash
+heroku login
+```
+- Create an application
+```bash
+heroku create todo-task-master
+```
+- Commit and push repo into a heroku
+```bash
+git add . && git commit -m "My first heroku app" && git push heroku master
+```
+- Check heroku logs
+```bash
+heroku logs --tail
+```
+- Open an application via browser: https://movie-search-rest-api.herokuapp.com
+
+
 # Contributing
 - clone the repository
 - configure Git for the first time after cloning with your name and email
@@ -34,5 +59,5 @@ To be able to start static code analysis _locally_ please run following script f
   git config --local user.name "Volodymyr Yahello"
   git config --local user.email "vyahello@gmail.com"
   ```
-- `python3.6 +` is required to run the code
+- `python3.7+` is required to run the code
 - `pip install -r requirements` to install all project dependencies
