@@ -1,6 +1,6 @@
 # Movie search API
 A lightweight movie search API written in [_responder_](http://python-responder.org/en/latest/) python HTTP service framework. 
-Please follow [movie search api](https://movie-search-rest-api.herokuapp.com) app to see how iy looks like.
+Please follow [movie search api](https://movie-search-rest-api.herokuapp.com) app to see how it looks like.
 
 [![Build Status](https://travis-ci.org/vyahello/movie-search-api.svg?branch=master)](https://travis-ci.org/vyahello/movie-search-api)
 [![Coverage Status](https://coveralls.io/repos/github/vyahello/movie-search-api/badge.svg?branch=master)](https://coveralls.io/github/vyahello/movie-search-api?branch=master)
