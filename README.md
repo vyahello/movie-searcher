@@ -5,6 +5,8 @@ Please follow [movie search api](https://movie-search-rest-api.herokuapp.com) ap
 [![Build Status](https://travis-ci.org/vyahello/movie-search-api.svg?branch=master)](https://travis-ci.org/vyahello/movie-search-api)
 [![Coverage Status](https://coveralls.io/repos/github/vyahello/movie-search-api/badge.svg?branch=master)](https://coveralls.io/github/vyahello/movie-search-api?branch=master)
 
+[![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.md)
 
 ## Table of contents
 - [Run application](#run-application)
