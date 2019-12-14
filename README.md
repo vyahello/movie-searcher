@@ -7,6 +7,7 @@ Please follow [movie search api](https://movie-search-rest-api.herokuapp.com) ap
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.md)
+[![Hits-of-Code](https://hitsofcode.com/github/vyahello/movie-search-api)](https://hitsofcode.com/view/github/vyahello/movie-search-api)
 
 ## Table of contents
 - [Run application](#run-application)
