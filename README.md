@@ -12,14 +12,14 @@
 > A lightweight movie search API written in [responder](http://python-responder.org/en/latest/) python HTTP service framework. 
 > Please follow https://movie-search-rest-api.herokuapp.com link app to see how it looks like.
 
-**Tools/features**
-> - python 3.7
-> - responder
-> - html5/css
-> - pytest
-> - shell
-> - travis/github CI
-> - heroku
+## Tools/features
+- python 3.7
+- responder
+- html5/css
+- pytest
+- shell
+- travis/github CI
+- heroku
 
 ## Table of contents
 - [Usage](#usage)
