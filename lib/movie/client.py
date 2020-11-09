@@ -1,3 +1,3 @@
 from responder import API
 
-movie_api: API = API()
+movie_client: API = API()

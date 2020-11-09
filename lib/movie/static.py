@@ -24,10 +24,20 @@ class ResponseCount(Enum):
 class Route:
     """The class represents API routes."""
 
-    home: str = "/api"
+    home: str = "/"
+    index: str = "/index.html"
+    api: str = "/api"
     search_single_keyword: str = "/api/search/{keyword}"
     single_director: str = "/api/director/{director_name}"
     top_ten: str = "/api/movie/top"
     all_genres: str = "/api/movie/genre/all"
     single_genre: str = "/api/movie/genre/{genre}"
     single_imdb_movie: str = "/api/movie/{imdb_number}"
+
+
+@dataclass(frozen=True)
+class HomeTemplate:
+    """The class represents templates."""
+
+    api: str = "api/home/index.html"
+    web: str = "web/index.html"

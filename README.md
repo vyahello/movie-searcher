@@ -8,8 +8,8 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.md)
 [![Hits-of-Code](https://hitsofcode.com/github/vyahello/movie-search-api)](https://hitsofcode.com/view/github/vyahello/movie-search-api)
 
-# Movie service API
-> A lightweight movie search API written in [responder](http://python-responder.org/en/latest/) python HTTP service framework. 
+# Movie searcher
+> A lightweight movie search service written in [responder](http://python-responder.org/en/latest/) python HTTP service framework. 
 > Please follow https://movie-search-rest-api.herokuapp.com link app to see how it looks like.
 
 ## Tools/features
@@ -17,6 +17,7 @@
 ### Production
 - python 3.7
 - responder framework
+- vue js framework
 - heroku deployment
 
 ### Development
@@ -24,7 +25,6 @@
 - travis & github CI
 
 ## Usage
-![Screenshot](static/service.png)
 
 ### Quick start
 
@@ -32,10 +32,20 @@ Please run next commands to start an app:
 ```bash
 git clone git@github.com:vyahello/movie-search-api.git
 pip install -r requirements.txt
-python movie_search_api.py
+python movie_searcher.py
 ```
 
-Please open [http://0.0.0.0:7777/api](http://0.0.0.0:7777/api) to retrieve API web page.
+### Frontend
+
+![Screenshot](static/web.png)
+
+> The page could be accessed via `http://0.0.0.0:7777/index.html` endpoint.
+
+### Backend (API docs)
+
+![Screenshot](static/api.png)
+
+> The page could be accessed via `http://0.0.0.0:7777/api` endpoint.
 
 ## Development notes
 

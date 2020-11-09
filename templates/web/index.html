@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--suppress HtmlFormInputWithoutLabel -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Searcher</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../../static/css/site.css">
+    <link rel="stylesheet" href="../../static/css/dropdown.css">
+</head>
+<body>
+    <div class="card" id="app">
+        <h1>Movie Searcher</h1>
+
+        <div class="controls">
+            <input type="text"
+                   v-model="search_text"
+                   class="form-control"
+                   placeholder="Search for a movie by keyword"
+                   @keyup.enter="search()"
+            >
+            <div class="subcontrols">
+                <a class="top_10" @click="top_10()">Top 10</a>
+
+                <select v-model="selected_genre" @change="load_genre(selected_genre)">
+                    <option v-for="genre in genres" v-bind:value="genre">{{'{{genre}}'}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="movies">
+            <div class="movie" v-for="movie in movies">
+                <div class="title">{{'{{ movie.title.toLocaleUpperCase() }}'}}</div>
+                <div class="attributes">
+                    <span class="year" v-if="movie.year > 0">{{'{{movie.year}}'}}</span>
+                    <span class="year" v-else>No Year</span>
+                    <span class="rating" v-if="movie.rating">{{'{{movie.rating}}'}}</span>
+                    <span class="score">score {{'{{movie.imdb_score}}'}}</span>
+                </div>
+                <div class="genres">
+                    <span class="badge"
+                          v-for="genre in movie.genres"
+                          :class="[genre === selected_genre ? 'badge-danger': 'badge-info']"
+                          @click="load_genre(genre)"
+                    >{{'{{ genre }}'}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <script src="../../static/js/vue/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquary.min.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="../../static/js/fake_data.js"></script>
+        <script src="../../static/js/site.js"></script>
+        <script src="../../static/js/dropdown.js"></script>
+</body>

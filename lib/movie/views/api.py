@@ -1,6 +1,6 @@
 from typing import List, Dict, Any
 from responder import Request, Response
-from lib.movie import movie_api
+from lib.movie import movie_client
 from lib.movie.data.database import (
     Movie,
     search_keyword,
@@ -12,10 +12,11 @@ from lib.movie.data.database import (
     movies_by_genre,
 )
 from lib.logging import Logger, MainLogger
-from lib.movie.static import ResponseCount, Route
+from lib.movie.static import HomeTemplate, ResponseCount, Route
 
 _logger: Logger = MainLogger(__name__)
 _route: Route = Route()
+_home_template: HomeTemplate = HomeTemplate()
 
 
 def _hits(movies: List[Movie]) -> List[Dict[Any, Any]]:
@@ -25,7 +26,12 @@ def _hits(movies: List[Movie]) -> List[Dict[Any, Any]]:
     return [movie_to_dict(movie) for movie in movies]
 
 
-@movie_api.route(route=_route.search_single_keyword)
+@movie_client.route(route=_route.api)
+async def home(_: Request, response: Response) -> None:
+    response.content = movie_client.template(_home_template.api)
+
+
+@movie_client.route(route=_route.search_single_keyword)
 async def search_by_keyword(
     _: Request, response: Response, keyword: str
 ) -> None:
@@ -39,7 +45,7 @@ async def search_by_keyword(
     }
 
 
-@movie_api.route(route=_route.single_director)
+@movie_client.route(route=_route.single_director)
 async def search_by_director(
     _: Request, response: Response, director_name: str
 ) -> None:
@@ -53,7 +59,7 @@ async def search_by_director(
     }
 
 
-@movie_api.route(route=_route.top_ten)
+@movie_client.route(route=_route.top_ten)
 async def search_movie_top_ten(_: Request, response: Response) -> None:
     movies = movies_by_popularity()
     _logger.info("Searching for top 10 movies")
@@ -65,12 +71,12 @@ async def search_movie_top_ten(_: Request, response: Response) -> None:
     }
 
 
-@movie_api.route(route=_route.all_genres)
+@movie_client.route(route=_route.all_genres)
 async def search_all_genres(_: Request, response: Response) -> None:
     response.media = all_genres()
 
 
-@movie_api.route(route=_route.single_genre)
+@movie_client.route(route=_route.single_genre)
 async def search_movies_by_genre(_: Request, response: Response, genre: str):
     movies = movies_by_genre(genre)
     _logger.info(
@@ -84,7 +90,7 @@ async def search_movies_by_genre(_: Request, response: Response, genre: str):
     }
 
 
-@movie_api.route(route=_route.single_imdb_movie)
+@movie_client.route(route=_route.single_imdb_movie)
 async def search_movie_by_imdb(
     _: Request, response: Response, imdb_number: str
 ) -> None:
