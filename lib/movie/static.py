@@ -24,7 +24,7 @@ class ResponseCount(Enum):
 class Route:
     """The class represents API routes."""
 
-    home: str = "/"
+    home: str = "/api"
     search_single_keyword: str = "/api/search/{keyword}"
     single_director: str = "/api/director/{director_name}"
     top_ten: str = "/api/movie/top"

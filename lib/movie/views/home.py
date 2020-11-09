@@ -7,4 +7,4 @@ _route: Route = Route()
 
 @movie_api.route(route=_route.home)
 async def index(_: Request, response: Response) -> None:
-    response.content = movie_api.template("home/index.html")
+    response.content = movie_api.template("api/home/index.html")

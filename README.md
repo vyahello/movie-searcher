@@ -35,6 +35,8 @@ pip install -r requirements.txt
 python movie_search_api.py
 ```
 
+Please open [http://0.0.0.0:7777/api](http://0.0.0.0:7777/api) to retrieve API web page.
+
 ## Development notes
 
 ### Code analysis
