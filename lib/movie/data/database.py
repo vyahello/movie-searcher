@@ -72,7 +72,11 @@ def search_title(keyword: str) -> List[Movie]:
     if not keyword:
         return []
 
-    return [movie for movie in _movie_data.values() if movie.lower_title.find(keyword.lower().strip()) >= 0]
+    return [
+        movie
+        for movie in _movie_data.values()
+        if movie.lower_title.find(keyword.lower().strip()) >= 0
+    ]
 
 
 def search_director(director: str) -> List[Movie]:
@@ -81,7 +85,11 @@ def search_director(director: str) -> List[Movie]:
     if not director:
         return []
 
-    return [movie for movie in _movie_data.values() if movie.director.lower().find(director.lower().strip()) >= 0]
+    return [
+        movie
+        for movie in _movie_data.values()
+        if movie.director.lower().find(director.lower().strip()) >= 0
+    ]
 
 
 def all_genres() -> List[str]:
@@ -127,7 +135,10 @@ def global_init() -> None:
             director=row.get("director_name", "").strip(),
             rating=row.get("content_rating", "").strip(),
             title=row.get("movie_title", "").replace("\xa0", "").strip(),
-            lower_title=row.get("movie_title", "").replace("\xa0", "").strip().lower(),
+            lower_title=row.get("movie_title", "")
+            .replace("\xa0", "")
+            .strip()
+            .lower(),
             duration=_make_numerical(row.get("duration", 0)),  # type: ignore
             genres=set(_split_separated_text(row.get("genres", "").lower())),  # type: ignore
             keywords=set(_split_separated_text(row.get("plot_keywords", "").lower())),  # type: ignore
@@ -183,4 +194,8 @@ def _split_separated_text(text: str) -> Optional[Any]:
     if not text:
         return text
 
-    return [part.strip() for part in text.strip().split("|") if part and part.strip()]
+    return [
+        part.strip()
+        for part in text.strip().split("|")
+        if part and part.strip()
+    ]

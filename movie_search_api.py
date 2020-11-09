@@ -23,7 +23,11 @@ class MovieSearcher(Service):
     def start(self) -> None:
         """Starts movie searcher."""
         global_init()
-        movie_api.run(address=self._endpoint.address, port=self._endpoint.port, debug=self._endpoint.debug)
+        movie_api.run(
+            address=self._endpoint.address,
+            port=self._endpoint.port,
+            debug=self._endpoint.debug,
+        )
 
 
 def main() -> None:
