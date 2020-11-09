@@ -131,7 +131,9 @@ def global_init() -> None:
     _movie_data = {}
     for row in rows:
         movie = Movie(  # type: ignore
-            imdb_code=_build_imdb_code(row.get("movie_imdb_link", None)),  # type: ignore
+            imdb_code=_build_imdb_code(
+                row.get("movie_imdb_link", None)  # type: ignore
+            ),
             director=row.get("director_name", "").strip(),
             rating=row.get("content_rating", "").strip(),
             title=row.get("movie_title", "").replace("\xa0", "").strip(),
@@ -140,8 +142,12 @@ def global_init() -> None:
             .strip()
             .lower(),
             duration=_make_numerical(row.get("duration", 0)),  # type: ignore
-            genres=set(_split_separated_text(row.get("genres", "").lower())),  # type: ignore
-            keywords=set(_split_separated_text(row.get("plot_keywords", "").lower())),  # type: ignore
+            genres=set(  # type: ignore
+                _split_separated_text(row.get("genres", "").lower())
+            ),
+            keywords=set(  # type: ignore
+                _split_separated_text(row.get("plot_keywords", "").lower())
+            ),
             imdb_score=float(row.get("imdb_score", 0.0)),
             year=_make_numerical(row.get("title_year", 0)),  # type: ignore
         )

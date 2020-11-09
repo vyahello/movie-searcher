@@ -1,91 +1,73 @@
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Checked with pylint](https://img.shields.io/badge/pylint-checked-blue)](https://www.pylint.org)
+[![Checked with flake8](https://img.shields.io/badge/flake8-checked-blue)](http://flake8.pycqa.org/)
+[![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 [![Build Status](https://travis-ci.org/vyahello/movie-search-api.svg?branch=master)](https://travis-ci.org/vyahello/movie-search-api)
 [![Coverage Status](https://coveralls.io/repos/github/vyahello/movie-search-api/badge.svg?branch=master)](https://coveralls.io/github/vyahello/movie-search-api?branch=master)
-[![Forks](https://img.shields.io/github/forks/vyahello/movie-search-api)](https://github.com/vyahello/movie-search-api/network/members)
-[![Stars](https://img.shields.io/github/stars/vyahello/movie-search-api)](https://github.com/vyahello/movie-search-api/stargazers)
-[![Issues](https://img.shields.io/github/issues/vyahello/movie-search-api)](https://github.com/vyahello/movie-search-api/issues)
-
-[![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.md)
 [![Hits-of-Code](https://hitsofcode.com/github/vyahello/movie-search-api)](https://hitsofcode.com/view/github/vyahello/movie-search-api)
 
-# Movie search API
+# Movie service API
 > A lightweight movie search API written in [responder](http://python-responder.org/en/latest/) python HTTP service framework. 
 > Please follow https://movie-search-rest-api.herokuapp.com link app to see how it looks like.
 
 ## Tools/features
+
+### Production
 - python 3.7
-- responder
-- html5/css
-- pytest
-- shell
-- travis/github CI
-- heroku
+- responder framework
+- heroku deployment
 
-## Table of contents
-- [Usage](#usage)
-- [Development notes](#development-notes)
-  - [Run code analysis](#run-code-analysis)
-  - [Heroku deployment](#heroku-deployment)
-  - [Meta](#meta)
-  - [Contributing](#contributing)
+### Development
+- pytest framework
+- travis & github CI
 
-# Usage
-Run script from the root directory of the project:
+## Usage
+![Screenshot](static/service.png)
+
+### Quick start
+
+Please run next commands to start an app:
 ```bash
+git clone git@github.com:vyahello/movie-search-api.git
+pip install -r requirements.txt
 python movie_search_api.py
 ```
 
-## Demo
-![Screenshot](static/service.png)
+## Development notes
 
-# Development notes
-## Run code analysis
+### Code analysis
 In general static code analysis consists of following tools: `black`, `flake8`, `pylint`, `mypy`, and `unittests` accordingly.
 To be able to start static code analysis _locally_ please run following script from the root directory of the project:
 ```bash
 ./run-code-analysis.sh install-dependencies
 ```
 
-## Heroku deployment
-Please follow instructions from - https://python-responder.org/en/latest/deployment.html
+### Deployment
+Please refer to [deployment](DEPLOYMENT.md) page to get instructions on how to provision an app.
 
-- Install heroku following by - https://devcenter.heroku.com/articles/heroku-cli#download-and-install
-- Login to heroku
-```bash
-heroku login
-```
-- Create an application
-```bash
-heroku create movie-search-rest-api
-```
-- Commit and push repo into a heroku
-```bash
-git add . && git commit -m "My first heroku app" && git push heroku master
-```
-- Check heroku logs
-```bash
-heroku logs --tail
-```
-- Open an application via browser: https://movie-search-rest-api.herokuapp.com
-
-
-## Release notes
-* 0.2.0
-    * Deploy application on heroku
-* 0.1.0
-    * Introduce initial app version
+### Release notes
+Please refer to [changelog](CHANGELOG.md) page for app release notes.
 
 ## Meta
-Author – Volodymyr Yahello vyahello@gmail.com
+Author – _Volodymyr Yahello_.
 
-Distributed under the `MIT` license. See [LICENSE](LICENSE.md) for more information.
+Distributed under the `MIT` license. See [license](LICENSE.md) for more information.
 
 You can reach out me at:
-* [https://github.com/vyahello](https://github.com/vyahello)
+* [vyahello@gmail.com](vyahello@gmail.com)
+* [https://twitter.com/vyahello](https://twitter.com/vyahello)
 * [https://www.linkedin.com/in/volodymyr-yahello-821746127](https://www.linkedin.com/in/volodymyr-yahello-821746127)
 
-## Contributing
-1. clone the repository
-2. configure Git for the first time after cloning with your `name` and `email`
+### Contributing
+I would highly appreciate any contribution and support. If you are interested to add your ideas into project please follow next simple steps:
+
+1. Clone the repository
+2. Configure `git` for the first time after cloning with your `name` and `email`
 3. `pip install -r requirements.txt` to install all project dependencies
-4. `pip install -r requirements-dev.txt` to install all development dependencies
+4. `pip install -r requirements-dev.txt` to install all development project dependencies
+5. Create your feature branch (`git checkout -b feature/fooBar`)
+6. Commit your changes (`git commit -am 'Add some fooBar'`)
+7. Push to the branch (`git push origin feature/fooBar`)
+8. Create a new Pull Request

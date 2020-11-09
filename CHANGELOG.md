@@ -5,4 +5,3 @@ Versions
     * Deploy application on heroku
 * 0.1.0
     * Introduce initial app version
- 
