@@ -18,6 +18,7 @@
 - python 3.7
 - responder framework
 - vue js framework
+- docker 
 - heroku deployment
 
 ### Development
@@ -37,13 +38,13 @@ python movie_searcher.py
 
 ### Frontend
 
-![Screenshot](static/web.png)
+![Screenshot](static/screen/web.png)
 
 > The page could be accessed via `http://0.0.0.0:7777/index.html` endpoint.
 
 ### Backend (API docs)
 
-![Screenshot](static/api.png)
+![Screenshot](static/screen/api.png)
 
 > The page could be accessed via `http://0.0.0.0:7777/api` endpoint.
 
