@@ -1,0 +1,9 @@
+FROM vyahello/movie-searcher-base:0.0.1
+LABEL version=0.0.1 \
+      metadata="The main image for movie searcher app frontend" \
+      maintainer="Volodymyr Yahello <vyahello@gmail.com>"
+RUN apt-get install -y -q nginx
+RUN rm /etc/nginx/sites-enabled/default
+COPY site.nginx /etc/nginx/sites-enabled/site.nginx
+COPY static /app
+ENTRYPOINT nginx -g "daemon off;"

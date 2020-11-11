@@ -1,5 +1,7 @@
 FROM ubuntu:latest
-
+LABEL version=0.0.1 \
+      metadata="The base image for movie searcher app" \
+      maintainer="Volodymyr Yahello <vyahello@gmail.com>"
 RUN apt-get update && apt-get upgrade -y
 ENV TZ=America/Los_Angeles
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone

@@ -1,0 +1,14 @@
+version: "3"
+services:
+  frontend:
+    image: vyahello/movie-searcher-frontend:0.0.1
+    command: nginx -g "daemon off;"
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+  backend:
+    image: vyahello/movie-searcher-backend:0.0.1
+    command: /venv/bin/python /app/app.py
+    ports:
+      - "7777:7777"

@@ -18,6 +18,7 @@
 - python 3.7
 - responder framework
 - vue js framework
+- nginx
 - docker 
 - heroku deployment
 
@@ -26,15 +27,6 @@
 - travis & github CI
 
 ## Usage
-
-### Quick start
-
-Please run next commands to start an app:
-```bash
-git clone git@github.com:vyahello/movie-search-api.git
-pip install -r requirements.txt
-python movie_searcher.py
-```
 
 ### Frontend
 
@@ -47,6 +39,27 @@ python movie_searcher.py
 ![Screenshot](static/screen/api.png)
 
 > The page could be accessed via `http://0.0.0.0:7777/api` endpoint.
+
+#### Docker
+
+Docker setup is based on docker-compose which consists of 3 official docker images:
+- vyahello/movie-searcher-base
+- vyahello/movie-searcher-backend  
+- vyahello/movie-searcher-frontend
+
+Please run the following command to launch an application via docker-compose (it uses [docker-compose.yml](docker-compose.yml) file):
+```docker
+docker-compose up
+```
+
+#### Source code
+
+Please run next commands to start an app via source code:
+```bash
+git clone git@github.com:vyahello/movie-search-api.git
+pip install -r requirements.txt
+python movie_searcher.py
+```
 
 ## Development notes
 
