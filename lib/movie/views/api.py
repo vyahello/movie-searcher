@@ -77,7 +77,9 @@ async def search_all_genres(_: Request, response: Response) -> None:
 
 
 @movie_client.route(route=_route.single_genre)
-async def search_movies_by_genre(_: Request, response: Response, genre: str):
+async def search_movies_by_genre(
+    _: Request, response: Response, genre: str
+) -> None:
     movies = movies_by_genre(genre)
     _logger.info(
         "Searching for movies by genre %s, %s results", genre, len(movies)
