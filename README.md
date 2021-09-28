@@ -49,7 +49,7 @@ Docker setup is based on docker-compose which consists of 3 official docker imag
 
 Please run the following command to launch an application via docker-compose (it uses [docker-compose.yml](docker-compose.yml) file):
 ```docker
-docker-compose up
+cd docker && docker-compose up
 ```
 
 #### Source code
