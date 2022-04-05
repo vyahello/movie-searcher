@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: movie-searcher
+  name: movie-searcher
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: movie-searcher
+  template:
+    metadata:
+      labels:
+        app: movie-searcher
+    spec:
+      containers:
+        - name: backend
+          image: vyahello/movie-searcher-backend:0.0.1
+          ports:
+            - containerPort: 7777
+        - name: frontend
+          image: vyahello/movie-searcher-frontend:0.0.1
+          ports:
+            - containerPort: 80
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: movie-searcher
+  name: movie-searcher
+  namespace: default
+spec:
+  ports:
+  - name: backend
+    port: 7777
+    protocol: TCP
+    targetPort: 7777
+  - name: frontend
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: movie-searcher
+  type: LoadBalancer

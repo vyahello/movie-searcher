@@ -32,7 +32,7 @@
 
 ![Screenshot](static/screen/web.png)
 
-> The page could be accessed via `http://0.0.0.0:7777/index.html` endpoint.
+> The page could be accessed via `http://0.0.0.0` endpoint.
 
 ### Backend (API docs)
 
@@ -47,10 +47,22 @@ Docker setup is based on docker-compose which consists of 3 official docker imag
 - vyahello/movie-searcher-backend  
 - vyahello/movie-searcher-frontend
 
-Please run the following command to launch an application via docker-compose (it uses [docker-compose.yml](docker-compose.yml) file):
-```docker
-cd docker && docker-compose up
+Please run the following command to launch an application via docker-compose (it uses [docker-compose.yml](docker/docker-compose.yml) file):
+```bash
+cd docker
+docker-compose up
 ```
+
+Get access to the app via `http://0.0.0.0` endpoint.
+
+#### K8S 
+
+```bash
+cd k8s 
+kubectl apply -f single-deployment.yaml
+```
+
+Get access to the app via `http://0.0.0.0` endpoint. Note it will create 2 replicas.
 
 #### Source code
 
